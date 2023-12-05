@@ -56,7 +56,6 @@ func Part2() {
 				matches += 1
 			}
 		}
-		log.Print(cardNumber)
 		cardWins[cardNumber-1] = matches
 	}
 	cards := make([]int, len(cardsRaw))
@@ -64,10 +63,8 @@ func Part2() {
 		cards[i] = 1
 	}
 	for card := range cards {
-		for numCards := 0; numCards < cards[card]; numCards++ {
-			for newCard := 1; newCard <= cardWins[card]; newCard++ {
-				cards[card+newCard] += 1
-			}
+		for newCard := 1; newCard <= cardWins[card]; newCard++ {
+			cards[card+newCard] += cards[card]
 		}
 	}
 	for _, card := range cards {
